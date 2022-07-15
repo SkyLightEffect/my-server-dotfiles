@@ -8,9 +8,6 @@ if [ `whoami` = root ]; then
   ./install.sh
 fi
 
-# create tmp dir
-mkdir -p $TMP 2>/dev/null
-
 # zsh
 
 chsh -s /bin/zsh
@@ -32,18 +29,9 @@ mkdir -p ~/.vim/colors 2>/dev/null
 ln -sf ~/.dotfiles/.vim/colors/onedark.vim ~/.vim/colors/onedark.vim
 ln -sf ~/.dotfiles/.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim
 
-# install pfetch
-
-git clone https://github.com/dylanaraps/pfetch.git $TMP/pfetch
-cd $TMP/pfetch
-make install
-
 # softlinks
 
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
-
-# clean tmp dir
-rm -rf $TMP
