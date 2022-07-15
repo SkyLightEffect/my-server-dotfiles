@@ -4,7 +4,7 @@ SCRIPTS=$DOT/scripts
 TMP=$DOT/.temp
 ZSH_PLUGINS=~/.zsh/plugins/
 
-if [ `whoami` = 'root' ]; then
+if [ `whoami` = root ]; then
   ./install.sh
 fi
 
