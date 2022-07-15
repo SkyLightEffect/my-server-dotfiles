@@ -1,6 +1,16 @@
 # My Dotfiles
 
-## Initial step: Cache Token
+## Initial steps: Git
+
+Make sure you have git installed
+```
+pacman -Syu git
+```
+or
+```
+apt install git
+```
+Cache access token:
 ```
 git config --global credential.helper cache
 ```
