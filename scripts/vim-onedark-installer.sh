@@ -11,7 +11,7 @@ mv ~/.dotfiles/.temp/onedark/colors/onedark.vim ~/.dotfiles/.vim/colors/
 mkdir -p ~/.vim/autoload
 mkdir -p ~/.vim/colors
 
-ln -s ~/.dotfiles/.vim/autoload/onedark.vim
-ln -s ~/.dotfiles/.vim/colors/onedark.vim
+# ln -s ~/.dotfiles/.vim/autoload/onedark.vim
+# ln -s ~/.dotfiles/.vim/colors/onedark.vim
 
 
