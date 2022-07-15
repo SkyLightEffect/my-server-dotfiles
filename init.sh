@@ -45,8 +45,5 @@ ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 
-mkdir -p ~/.vim/colors
-mkdir -p ~/.vim/autoload
-
 # clean tmp dir
 rm -rf $TMP

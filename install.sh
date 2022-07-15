@@ -13,14 +13,12 @@ if [ `whoami` = root ]; then
       echo "No apt installer detected. Skipping package installation..."
       exit
     else
-      ./install-apt-packages.sh 
+      chmod u+x .apt.sh && ./.apt.sh
     fi
   else
     echo "Install arch packages via pacman..."
-    ./install-pacman-packages.sh
+    chmod u+x .pacman.sh && ./.pacman.sh
   fi
-  # install pfetch
-  #./install-pfetch.sh $2
 else
   echo Skipping package installation due to lack of permissions.
 fi
