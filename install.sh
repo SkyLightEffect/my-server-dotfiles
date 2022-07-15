@@ -1,8 +1,9 @@
 #!/bin/bash
 DOT=~/.dotfiles
-chmod -R u+x $DOT/scripts
-sh $DOT/scripts/install-packages.sh $DOT
-sh $DOT/scripts/vim-onedark-installer.sh
-sh $DOT/scripts/links.sh
-sh $DOT/scripts/zsh-installer.sh
+SCRIPTS=$DOT/scripts
+chmod -R u+x $SCRIPTS
+sh $SCRIPTS/install-packages.sh $SCRIPTS
+sh $SCRIPTS/scripts/vim-onedark-installer.sh
+sh $SCRIPTS/scripts/links.sh
+sh $SCRIPTS/scripts/zsh-installer.sh
 zsh
