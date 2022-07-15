@@ -4,4 +4,5 @@ pacman -Syu --noconfirm \
   vim \
   neofetch \
   tmux \
-  zsh
+  zsh \
+  make
