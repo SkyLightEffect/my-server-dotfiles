@@ -53,10 +53,12 @@ prompt oliver
 
 PROMPT="%F{green}%n%f%F{green}@%f%F{green}%m%f: %F{cyan}%~%f%F{white} $ %f"
 
+# plugins
+PLUGINS=~/.zsh/plugins/
 
 #syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
+source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 
 # tmux
 alias tmux="tmux -2"
