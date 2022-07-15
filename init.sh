@@ -1,0 +1,52 @@
+#!/bin/bash
+DOT=~/.dotfiles
+SCRIPTS=$DOT/scripts
+TMP=$DOT/.temp
+ZSH_PLUGINS=~/.zsh/plugins/
+
+if [ `whoami` = 'root' ] then;
+  ./install.sh
+fi
+
+# create tmp dir
+mkdir -p $TMP
+
+# zsh
+
+chsh -s /bin/zsh
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS/zsh-syntax-highliting/
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-autosuggestions
+
+# install vim onedark theme
+
+mkdir -p ~/.dotfiles/.vim/autoload
+mkdir -p ~/.dotfiles/.vim/colors
+
+git clone https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim ~/.dotfiles/.vim/autoload
+git clone https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim ~/.dotfiles/.vim/colors
+
+mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/colors
+
+ln -sf ~/.dotfiles/.vim/colors/onedark.vim ~/.vim/colors/onedark.vim
+ln -sf ~/.dotfiles/.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim
+
+# install pfetch
+
+git clone https://github.com/dylanaraps/pfetch.git $TMP/pfetch
+cd $TMP/pfetch
+make install
+
+# softlinks
+
+ln -sf ~/.dotfiles/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/.dotfiles/.vimrc ~/.vimrc
+ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+
+mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/autoload
+
+# clean tmp dir
+rm -rf $TMP

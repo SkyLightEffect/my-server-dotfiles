@@ -1,11 +1,27 @@
 #!/bin/bash
+
 DOT=~/.dotfiles
 SCRIPTS=$DOT/scripts
 TMP=$DOT/.temp
-chmod -R u+x $SCRIPTS
-sh $SCRIPTS/install-packages.sh $SCRIPTS $TMP
-sh $SCRIPTS/vim-onedark-installer.sh
-sh $SCRIPTS/links.sh
-sh $SCRIPTS/zsh-installer.sh
-rm -rd $TMP
-zsh
+
+if [ `whoami` = root ]; then
+  pacman --version 1> /dev/null 2> /dev/null
+  if [ $? -ne 0 ]; then
+    echo "No pacman installer detected."
+    apt --version 1> /dev/null 2> /dev/null
+    if [ $? -ne 0 ]; then
+      echo "No apt installer detected. Skipping package installation..."
+      exit
+    else
+      ./install-apt-packages.sh 
+    fi
+  else
+    echo "Install arch packages via pacman..."
+    ./install-pacman-packages.sh
+  fi
+  # install pfetch
+  #./install-pfetch.sh $2
+else
+  echo Skipping package installation due to lack of permissions.
+fi
+
