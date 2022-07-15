@@ -10,8 +10,11 @@ git config --global credential.helper cache
 git clone https://github.com/SkyLightEffect/mydotfiles.git ~/.dotfiles
 ```
 
-## Create systemlinks in the Home directory to the real files in the repo
+## Run the installation script
 ```
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
-ln -s ~/.dotfilees/.gitconfig ~/.gitconfig
+sudo sh ~/.dotfiles/install.sh
+```
+Or without root permission (no packages will be installed)
+```
+sh ~/.dotfiles/install.sh
 ```
