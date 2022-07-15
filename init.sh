@@ -21,7 +21,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 mkdir -p $DOT/.vim/autoload 2>/dev/null
 mkdir -p $DOT/.vim/colors 2>/dev/null
 
-git clone https://github.com/joshdick/onedark.vim.git $TEM/onedark
+git clone https://github.com/joshdick/onedark.vim.git $TMP/onedark
 
 mv $TMP/onedark/autoload/onedark.vim $DOT/.vim/autoload/
 mv $TMP/onedark/colors/onedark.vim $DOT/.vim/colors/
@@ -39,4 +39,4 @@ ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 
-#rm -df $TMP
+rm -rf $TMP
