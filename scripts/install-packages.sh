@@ -1,5 +1,5 @@
-if [ $# -lt 1 ]; then
-  echo "Error - no argument. Please specify the script dir!"
+if [ $# -lt 2 ]; then
+  echo "Error - no argument. Please specify the script dir and temp dir!"
   exit
 fi
 
@@ -18,6 +18,8 @@ if [ `whoami` = root ]; then
     echo "Install arch packages via pacman..."
     $1/install-pacman-packages.sh
   fi
+  # install pfetch
+  $1/install-pfetch.sh
 else
   echo Skipping package installation due to lack of permissions.
 fi
