@@ -4,12 +4,12 @@ SCRIPTS=$DOT/scripts
 TMP=$DOT/.temp
 ZSH_PLUGINS=~/.zsh/plugins/
 
-if [ `whoami` = 'root' ] then;
+if [ `whoami` = 'root' ]; then
   ./install.sh
 fi
 
 # create tmp dir
-mkdir -p $TMP
+mkdir -p $TMP 2>/dev/null
 
 # zsh
 
@@ -20,14 +20,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 
 # install vim onedark theme
 
-mkdir -p ~/.dotfiles/.vim/autoload
-mkdir -p ~/.dotfiles/.vim/colors
+mkdir -p ~/.dotfiles/.vim/autoload 2>/dev/null
+mkdir -p ~/.dotfiles/.vim/colors 2>/dev/null
 
 git clone https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim ~/.dotfiles/.vim/autoload
 git clone https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim ~/.dotfiles/.vim/colors
 
-mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/autoload 2>/dev/null
+mkdir -p ~/.vim/colors 2>/dev/null
 
 ln -sf ~/.dotfiles/.vim/colors/onedark.vim ~/.vim/colors/onedark.vim
 ln -sf ~/.dotfiles/.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim
