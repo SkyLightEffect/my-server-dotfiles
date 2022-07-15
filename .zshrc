@@ -71,6 +71,6 @@ fi
 
 pfetch 2> /dev/null
 
-if [ $? = 0 ]; then
+if [ $? -eq 0 ]; then
   neofetch 2> /dev/null
 fi
