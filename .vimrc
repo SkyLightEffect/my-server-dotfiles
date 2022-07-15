@@ -2,7 +2,7 @@
 
 set number
 set mouse=a
-set term=screen-256color
+"set term=screen-256color
 
 syntax on
 colorscheme onedark
