@@ -8,6 +8,8 @@ if [ `whoami` = root ]; then
   ./install.sh
 fi
 
+mkdir -p $TMP
+
 # zsh
 
 chsh -s /bin/zsh
@@ -20,8 +22,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 mkdir -p ~/.dotfiles/.vim/autoload 2>/dev/null
 mkdir -p ~/.dotfiles/.vim/colors 2>/dev/null
 
-git clone https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim ~/.dotfiles/.vim/autoload
-git clone https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim ~/.dotfiles/.vim/colors
+git clone https://github.com/joshdick/onedark.vim.git $TEMP/onedark
+
+mv ~/.dotfiles/.temp/onedark/autoload/onedark.vim ~/.dotfiles/.vim/autoload/
+mv ~/.dotfiles/.temp/onedark/colors/onedark.vim ~/.dotfiles/.vim/colors/
 
 mkdir -p ~/.vim/autoload 2>/dev/null
 mkdir -p ~/.vim/colors 2>/dev/null
@@ -35,3 +39,6 @@ ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+
+
+rm -df $TMP
