@@ -61,7 +61,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /de
 # tmux
 tmux --version 2> /dev/null 1> /dev/null
 
-if [ $? -ne 0 ]; then
+if [ $? -eq 0 ]; then
   alias tmux="tmux -2"
 
   if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
@@ -71,6 +71,6 @@ fi
 
 pfetch 2> /dev/null
 
-if [ $? -eq 0 ]; then
+if [ $? -ne 0 ]; then
   neofetch 2> /dev/null
 fi
