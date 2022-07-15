@@ -19,7 +19,7 @@ if [ `whoami` = root ]; then
     $1/install-pacman-packages.sh
   fi
   # install pfetch
-  $2/install-pfetch.sh
+  $1/install-pfetch.sh $2
 else
   echo Skipping package installation due to lack of permissions.
 fi
