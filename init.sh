@@ -1,8 +1,8 @@
 #!/bin/bash
 DOT=~/.dotfiles
-SCRIPTS=$DOT/scripts
+#SCRIPTS=$DOT/scripts
 TMP=$DOT/.temp
-ZSH_PLUGINS=~/.zsh/plugins/
+ZSH_PLUGINS=~/.zsh/plugins
 
 if [ `whoami` = root ]; then
   ./install.sh
