@@ -1,6 +1,5 @@
 #!/bin/bash
 DOT=~/.dotfiles
-#SCRIPTS=$DOT/scripts
 TMP=$DOT/.temp
 ZSH_PLUGINS=~/.zsh/plugins
 
@@ -21,12 +20,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 
 mkdir -p $DOT/.vim/autoload 2>/dev/null
 mkdir -p $DOT/.vim/colors 2>/dev/null
-mkdir -p ~
 
-git clone https://github.com/joshdick/onedark.vim.git $TEMP/onedark
+git clone https://github.com/joshdick/onedark.vim.git $TEM/onedark
 
-mv $TMP/onedark/autoload/onedark.vim ~/.dotfiles/.vim/autoload/
-mv $TMP/onedark/colors/onedark.vim ~/.dotfiles/.vim/colors/
+mv $TMP/onedark/autoload/onedark.vim $DOT/.vim/autoload/
+mv $TMP/onedark/colors/onedark.vim $DOT/.vim/colors/
 
 mkdir -p ~/.vim/autoload 2>/dev/null
 mkdir -p ~/.vim/colors 2>/dev/null
@@ -41,4 +39,4 @@ ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 
-rm -df $TMP
+#rm -df $TMP
