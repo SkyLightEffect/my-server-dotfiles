@@ -69,4 +69,8 @@ if [ $? -ne 0 ]; then
   fi
 fi
 
-neofetch 2> /dev/null
+pfetch 2> /dev/null
+
+if [ $? = 0 ]; then
+  neofetch 2> /dev/null
+fi
