@@ -4,7 +4,7 @@
 
 Make sure you have git installed
 ```
-pacman -Syu git
+pacman -Syu --noconfirm git
 ```
 or
 ```
