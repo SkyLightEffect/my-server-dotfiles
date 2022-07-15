@@ -59,14 +59,10 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 
 # tmux
-tmux --version 2> /dev/null 1> /dev/null
+alias tmux="tmux -2"
 
-if [ $? -eq 0 ]; then
-  alias tmux="tmux -2"
-
-  if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-    tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux
-  fi
+if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux 2> /dev/null
 fi
 
 pfetch 2> /dev/null
