@@ -38,7 +38,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
 call plug#end()
 
-colorscheme onedark                                                                                                                                                                                                                let g:airline_theme='onedark'
+colorscheme onedark
+let g:airline_theme='onedark'
 
 " }}}
 
