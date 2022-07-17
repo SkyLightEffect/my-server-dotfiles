@@ -3,3 +3,4 @@ pacman -Syu \
   zsh \
   vim \
   make \
+  gping

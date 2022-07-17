@@ -60,9 +60,12 @@ PLUGINS=~/.zsh/plugins/
 source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 
-# tmux
+# aliases
 alias tmux="tmux -2"
 
+gping --version 2>/dev/null 1>/dev/null && alias ping="gping"
+
+# tmux
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux 2> /dev/null
 fi
