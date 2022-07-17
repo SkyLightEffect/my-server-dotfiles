@@ -22,7 +22,7 @@ if [ `whoami` = root ]; then
     chmod u+x $DOT/.pacman.sh && $DOT/.pacman.sh
   fi
   # install pfetch
-  chmod u+x $DOT/.pfetch.sh && ./.pfetch.sh $TMP
+  chmod u+x $DOT/.pfetch.sh && $DOT/.pfetch.sh $TMP
 else
   echo Skipping package installation due to lack of permissions.
 fi
