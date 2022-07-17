@@ -18,7 +18,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 
 # vim plugin manager
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+#vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
 # install vim onedark theme
 
@@ -46,3 +47,5 @@ ln -sf $DOT/.vimrc ~/.vimrc
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 
 rm -rf $TMP
+
+zsh 2>/dev/null
