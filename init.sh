@@ -4,7 +4,7 @@ TMP=$DOT/.temp
 ZSH_PLUGINS=~/.zsh/plugins
 
 if [ `whoami` = root ]; then
-  ./install.sh
+  $DOT/install.sh
 fi
 
 mkdir -p $TMP

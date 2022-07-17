@@ -3,3 +3,4 @@ apt install -y \
   zsh \
   vim \
   make \
+  curl \

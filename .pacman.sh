@@ -3,4 +3,5 @@ pacman -Syu \
   zsh \
   vim \
   make \
-  gping
+  gping \
+  curl
