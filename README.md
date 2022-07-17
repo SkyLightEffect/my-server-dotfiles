@@ -15,16 +15,7 @@ Cache access token:
 git config --global credential.helper cache
 ```
 
-## Clone repo into hidden directory
+## Clone and install repo
 ```
-git clone https://github.com/SkyLightEffect/mydotfiles.git ~/.dotfiles
-```
-
-## Run the installation script
-```
-sudo sh ~/.dotfiles/init.sh
-```
-Or without root permission (no packages will be installed)
-```
-sh ~/.dotfiles/init.sh
+git clone https://github.com/SkyLightEffect/mydotfiles.git ~/.dotfiles && sudo sh ~/.dotfiles/init.sh
 ```
