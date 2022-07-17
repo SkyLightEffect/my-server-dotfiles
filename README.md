@@ -22,9 +22,9 @@ git clone https://github.com/SkyLightEffect/mydotfiles.git ~/.dotfiles
 
 ## Run the installation script
 ```
-sudo sh ~/.dotfiles/install.sh
+sudo sh ~/.dotfiles/init.sh
 ```
 Or without root permission (no packages will be installed)
 ```
-sh ~/.dotfiles/install.sh
+sh ~/.dotfiles/init.sh
 ```
