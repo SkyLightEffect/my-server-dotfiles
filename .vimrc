@@ -36,6 +36,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'joshdick/onedark.vim'
+  Plug 'tpope/vim-commentary'
 call plug#end()
 
 colorscheme onedark
