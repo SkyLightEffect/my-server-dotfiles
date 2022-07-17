@@ -24,6 +24,7 @@ set expandtab
 " colors
 syntax on
 colorscheme onedark
+let g:airline_theme='onedark'
 
 " optics
 set number
