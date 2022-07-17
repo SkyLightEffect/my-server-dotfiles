@@ -23,8 +23,6 @@ set expandtab
 
 " colors
 syntax on
-colorscheme onedark
-let g:airline_theme='onedark'
 
 " optics
 set number
@@ -39,6 +37,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'joshdick/onedark.vim'
 call plug#end()
+
+colorscheme onedark                                                                                                                                                                                                                let g:airline_theme='onedark'
 
 " }}}
 
