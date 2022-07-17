@@ -16,6 +16,9 @@ chsh -s /bin/zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS/zsh-syntax-highlighting/
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-autosuggestions
 
+# vim plugin manager
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim:
+
 # install vim onedark theme
 
 mkdir -p $DOT/.vim/autoload 2>/dev/null
