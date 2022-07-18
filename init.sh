@@ -9,6 +9,9 @@ fi
 
 mkdir -p $TMP
 
+# install powerline fonts
+
+
 # zsh
 
 chsh -s /bin/zsh
@@ -22,7 +25,6 @@ vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 
 # softlinks
 

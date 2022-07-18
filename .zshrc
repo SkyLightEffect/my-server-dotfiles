@@ -70,6 +70,8 @@ if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux 2> /dev/null
 fi
 
+# export TERM=xterm-256color
+
 pfetch 2> /dev/null
 
 if [ $? -ne 0 ]; then

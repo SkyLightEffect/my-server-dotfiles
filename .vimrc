@@ -6,8 +6,9 @@ filetype indent on    " Load an indent file for the detected file type.
 
 " navigation and control
 
-set mouse=a       " mouse right click
-set scrolloff=10  " Do not let cursor scroll below or above N number of lines when scrolling.
+set ttymouse=xterm2 " tmux mouse compatibility
+set mouse=a         " mouse right click
+set scrolloff=10    " Do not let cursor scroll below or above N number of lines when scrolling.
 
 " search
 set ignorecase    " Ignore capital letters during search.
