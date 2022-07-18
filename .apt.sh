@@ -4,3 +4,4 @@ apt install -y \
   vim \
   make \
   curl \
+  tmux \

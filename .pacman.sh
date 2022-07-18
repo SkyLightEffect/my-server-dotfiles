@@ -4,4 +4,5 @@ pacman -Syu --noconfirm \
   vim \
   make \
   gping \
-  curl
+  curl \
+  tmux
