@@ -5,4 +5,5 @@ pacman -Syu --noconfirm \
   make \
   gping \
   curl \
-  tmux
+  tmux \
+  lsd \

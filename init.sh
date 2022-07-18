@@ -31,6 +31,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf $DOT/.zshrc ~/.zshrc
 ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
+
+mkdir -p ~/.config/lsd
+ln -sf $DOT/.config/lsd/config.yaml ~/.config/lsd/config.yaml
+
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 tmux source ~/.tmux.conf
 

@@ -5,3 +5,4 @@ apt install -y \
   make \
   curl \
   tmux \
+  lsd \
