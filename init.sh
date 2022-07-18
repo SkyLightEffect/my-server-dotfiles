@@ -25,7 +25,6 @@ vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-tmux source ~/.tmux.conf
 
 # softlinks
 
@@ -33,6 +32,7 @@ ln -sf $DOT/.zshrc ~/.zshrc
 ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
+tmux source ~/.tmux.conf
 
 rm -rf $TMP
 
