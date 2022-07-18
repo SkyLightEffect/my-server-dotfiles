@@ -91,3 +91,5 @@ fi
 cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export LS_COLORS="$(vivid generate nord)"
