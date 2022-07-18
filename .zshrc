@@ -68,6 +68,7 @@ lsd --version 2>/dev/null
 if [ $? -eq 0 ]; then
   alias ls="lsd"
   alias l='ls -l'
+  alias ll='ls -la'
   alias la='ls -a'
   alias lla='ls -la'
   alias lt='ls --tree'
