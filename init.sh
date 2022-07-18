@@ -23,6 +23,10 @@ vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # softlinks
 
 ln -sf $DOT/.zshrc ~/.zshrc
