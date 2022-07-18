@@ -9,9 +9,6 @@ fi
 
 mkdir -p $TMP
 
-# install powerline fonts
-
-
 # zsh
 
 chsh -s /bin/zsh

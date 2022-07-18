@@ -7,3 +7,5 @@ pacman -Syu --noconfirm \
   curl \
   tmux \
   lsd \
+  progress \
+  fd \

@@ -3,6 +3,9 @@ apt install -y \
   zsh \
   vim \
   make \
+  gping \
   curl \
   tmux \
   lsd \
+  progress \
+  fd \

@@ -63,8 +63,8 @@ source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 # aliases
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
-alias ls="lsd"
-alias ll="lsd -la"
+lsd --version 2>/dev/null && alias ls="lsd"
+alias ll="ls -la"
 
 gping --version 2>/dev/null 1>/dev/null && alias ping="gping"
 
