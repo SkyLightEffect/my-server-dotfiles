@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'tpope/vim-commentary'
   Plug 'ap/vim-css-color'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 colorscheme onedark

@@ -33,8 +33,9 @@ ln -sf $DOT/.zshrc ~/.zshrc
 ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
 
-mkdir -p ~/.config/lsd
+mkdir -p ~/.config/lsd/themes
 ln -sf $DOT/.config/lsd/config.yaml ~/.config/lsd/config.yaml
+ln -sf $DOT/.config/lsd/themes/mytheme.yaml ~/.config/lsd/themes/mytheme.yaml
 
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 tmux source ~/.tmux.conf

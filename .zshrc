@@ -63,8 +63,15 @@ source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 # aliases
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
-lsd --version 2>/dev/null && alias ls="lsd"
-alias ll="ls -la"
+
+lsd --version 2>/dev/null
+if [ $? -eq 0 ]; then
+  alias ls="lsd"
+  alias l='ls -l'
+  alias la='ls -a'
+  alias lla='ls -la'
+  alias lt='ls --tree'
+fi
 
 gping --version 2>/dev/null 1>/dev/null && alias ping="gping"
 
@@ -82,3 +89,5 @@ if [ $? -ne 0 ]; then
 fi
 
 cd
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
