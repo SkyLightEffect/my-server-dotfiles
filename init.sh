@@ -20,23 +20,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
-# install vim onedark theme
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-#mkdir -p $DOT/.vim/autoload 2>/dev/null
-#mkdir -p $DOT/.vim/colors 2>/dev/null
-
-#mkdir -p $TMP/onedark
-
-#git clone https://github.com/joshdick/onedark.vim.git $TMP/onedark
-
-#mv $TMP/onedark/autoload/onedark.vim $DOT/.vim/autoload/
-#mv $TMP/onedark/colors/onedark.vim $DOT/.vim/colors/
-
-#mkdir -p ~/.vim/autoload 2>/dev/null
-#mkdir -p ~/.vim/colors 2>/dev/null
-
-#ln -sf $DOT/.vim/colors/onedark.vim ~/.vim/colors/onedark.vim
-#ln -sf $DOT/.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim
 
 # softlinks
 
