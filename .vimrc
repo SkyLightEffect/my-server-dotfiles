@@ -29,6 +29,11 @@ syntax on
 set number
 set cursorline
 
+let g:airline_theme='onedark'
+let g:lightline = {
+          \ 'colorscheme': 'onedark',
+      \ }
+
 " PLUGINS ---------------------------------------------------------------- {{{
 
 call plug#begin('~/.vim/plugged')
@@ -40,10 +45,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'ap/vim-css-color'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  " Plug 'arcticicestudio/nord-vim'
+  " Plug 'itchyny/lightline.vim'
 call plug#end()
 
-colorscheme onedark
-let g:airline_theme='onedark'
+colorscheme onedark 
+" colorscheme nord
 
 " }}}
 
