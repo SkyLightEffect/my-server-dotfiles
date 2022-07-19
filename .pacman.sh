@@ -1,4 +1,4 @@
-pacman -Syu --noconfirm \
+pacman -S --noconfirm \
   sudo \
   zsh \
   vim \
