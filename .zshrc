@@ -64,7 +64,7 @@ source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
 
-lsd --version 2>/dev/null
+lsd --version 2>/dev/null 1>/dev/null
 if [ $? -eq 0 ]; then
   alias ls="lsd"
   alias l='ls -l'
