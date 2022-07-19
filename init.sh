@@ -43,4 +43,4 @@ tmux source ~/.tmux.conf
 
 rm -rf $TMP
 
-zsh 2>/dev/null
+#zsh 2>/dev/null
