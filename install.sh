@@ -23,9 +23,10 @@ if [ `whoami` = root ]; then
       # rm vivid_0.8.0_amd64.deb
 
       # install lsd
-      wget "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_amd64.deb"
-      dpkg -i lsd_0.22.0_amd64.deb
-      rm lsd_0.22.0_amd64.deb
+      #wget "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_amd64.deb"
+      curl -fLo ~/.tmp/lsd.deb --create-dirs "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_amd64.deb"
+      dpkg -i ~/.tmp/lsd.deb
+      rm ~/.tmp/lsd.deb
     fi
   else
     echo "Install arch packages via pacman..."
