@@ -6,6 +6,5 @@ apt install -y \
   gping \
   curl \
   tmux \
-  lsd \
   progress \
   fd \

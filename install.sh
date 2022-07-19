@@ -16,10 +16,16 @@ if [ `whoami` = root ]; then
       exit
     else
       chmod u+x $DOT/.apt.sh && $DOT/.apt.sh
+
       # install vivid
-      wget "https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb"
-      dpkg -i vivid_0.8.0_amd64.deb
-      rm vivid_0.8.0_amd64.deb
+      # wget "https://github.com/sharkdp/vivid/releases/download/v0.8.0/vivid_0.8.0_amd64.deb"
+      # dpkg -i vivid_0.8.0_amd64.deb
+      # rm vivid_0.8.0_amd64.deb
+
+      # install lsd
+      wget "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_amd64.deb"
+      dpkg -i lsd_0.22.0_amd64.deb
+      rm lsd_0.22.0_amd64.deb
     fi
   else
     echo "Install arch packages via pacman..."

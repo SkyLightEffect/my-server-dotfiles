@@ -10,8 +10,9 @@ fi
 mkdir -p $TMP
 
 # zsh
-
-chsh -s /bin/zsh
+if [ $SHELL != "/bin/zsh" ]; then
+  chsh -s /bin/zsh
+fi
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS/zsh-syntax-highlighting/
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-autosuggestions
@@ -25,7 +26,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # softlinks
 
