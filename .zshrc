@@ -95,4 +95,6 @@ cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export LS_COLORS="$(vivid generate nord)"
+#export LS_COLORS="$(vivid generate nord)"
+
+export LS_COLORS=$(cat ~/.dotfiles/.LS_COLORS)

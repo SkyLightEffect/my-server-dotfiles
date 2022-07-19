@@ -8,3 +8,4 @@ apt install -y \
   tmux \
   progress \
   fd \
+  wget \

@@ -9,3 +9,4 @@ pacman -Syu --noconfirm \
   lsd \
   progress \
   fd \
+  wget
