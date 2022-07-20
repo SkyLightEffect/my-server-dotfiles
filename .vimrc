@@ -48,10 +48,21 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   " Add info to sidebar about git
   Plug 'airblade/vim-gitgutter'
+  " Autocomplete functionality
+  Plug 'prabirshrestha/asyncomplete.vim'
+  " Autocomplete source - the buffer
+  Plug 'prabirshrestha/asyncomplete-buffer.vim'
+  " Autocomplete source - files
+  Plug 'prabirshrestha/asyncomplete-file.vim'
+  " Autocomplete source - language server protocol
+  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  " Autocomplete source - Ultisnips
+  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+  " Autocomplete source - ctags
+  Plug 'prabirshrestha/asyncomplete-tags.vim'"
 call plug#end()
 
 colorscheme onedark 
 " colorscheme nord
 
 " }}}
-
