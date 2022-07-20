@@ -42,12 +42,25 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'joshdick/onedark.vim'
   Plug 'tpope/vim-commentary'
+  " optics
   Plug 'ap/vim-css-color'
+  " modern PHP syntax highlighting
+  Plug 'StanAngeloff/php.vim'
+  " Syntax highlighting for postgres
+  Plug 'lifepillar/pgsql.vim'
+
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'alvan/vim-closetag'
   Plug 'jiangmiao/auto-pairs'
+
   " Add info to sidebar about git
   Plug 'airblade/vim-gitgutter'
+
+	" sync-vim is only here because it is required by vim-lsp
+	Plug 'prabirshrestha/async.vim'
+	" Languages server protocol connection
+	Plug 'prabirshrestha/vim-lsp'
+
   " Autocomplete functionality
   Plug 'prabirshrestha/asyncomplete.vim'
   " Autocomplete source - the buffer
@@ -55,14 +68,87 @@ call plug#begin('~/.vim/plugged')
   " Autocomplete source - files
   Plug 'prabirshrestha/asyncomplete-file.vim'
   " Autocomplete source - language server protocol
-  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
   " Autocomplete source - Ultisnips
   Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
   " Autocomplete source - ctags
   Plug 'prabirshrestha/asyncomplete-tags.vim'"
-call plug#end()
+
+  call plug#end()
 
 colorscheme onedark 
-" colorscheme nord
 
-" }}}
+" Tab completion with autocomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+
+" set up lsp
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+
+
+" Using asyncomplete-buffer.vim
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+
+" Using asyncomplete-file.
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+
+" Using Ultisnips
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+      \ 'name': 'ultisnips',
+      \ 'whitelist': ['*'],
+      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+      \ }))
+
+" Using Ctags
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+    \ 'name': 'tags',
+    \ 'whitelist': ['c', 'ruby'],
+    \ 'completor': function('asyncomplete#sources#tags#completor'),
+    \ 'config': {
+    \    'max_file_size': 50000000,
+    \  },
+    \ }))
