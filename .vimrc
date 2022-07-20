@@ -5,7 +5,6 @@ filetype plugin on    " Enable plugins and load plugin for the detected file typ
 filetype indent on    " Load an indent file for the detected file type.
 
 " navigation and control
-
 set ttymouse=xterm2 " tmux mouse compatibility
 set mouse=r         " mouse right click
 set scrolloff=10    " Do not let cursor scroll below or above N number of lines when scrolling.
@@ -45,8 +44,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'ap/vim-css-color'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  " Plug 'arcticicestudio/nord-vim'
-  " Plug 'itchyny/lightline.vim'
+  Plug 'alvan/vim-closetag'
+  Plug 'jiangmiao/auto-pairs'
+  " Add info to sidebar about git
+  Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 colorscheme onedark 
