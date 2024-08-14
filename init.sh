@@ -56,6 +56,12 @@ rm -rf "$TMP"
 if command -v pacman > /dev/null; then
   echo "Optimizing pacman configuration..."
 
+  # Prompt for root password if not running as root
+  if [ "$(id -u)" -ne 0 ]; then
+    echo "This script requires root privileges to modify pacman.conf. Please enter your password."
+    exec sudo bash "$0" "$@"
+  fi
+
   # Backup original pacman.conf
   cp /etc/pacman.conf /etc/pacman.conf.bak
 
