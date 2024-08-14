@@ -76,7 +76,7 @@ if command -v lsd &> /dev/null; then
   alias la='ls -a'
   alias lla='ls -la'
   alias lt='ls --tree'
-  alias clear='clear && (neofetch || pfetch)'
+  alias clear='clear && neofetch 2> /dev/null || pfetch 2> /dev/null'
 fi
 
 alias dots-update="rm -rf ~/.dotfiles && git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sh ~/.dotfiles/init.sh && rm -rf ~/.dotfiles && sudo git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sudo ~/.dotfiles/init.sh"
