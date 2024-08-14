@@ -1,38 +1,42 @@
 #!/bin/bash
+
 DOT=~/.dotfiles
 TMP=$DOT/.temp
 ZSH_PLUGINS=~/.zsh/plugins
 
-if [ `whoami` = root ]; then
+# Execute install.sh if run as root
+if [ "$(id -u)" -eq 0 ]; then
   $DOT/install.sh
 fi
 
-mkdir -p $TMP
+mkdir -p "$TMP"
 
-# zsh
-if [ $SHELL != "/bin/zsh" ]; then
+# zsh setup
+if [ "$SHELL" != "/bin/zsh" ]; then
   chsh -s /bin/zsh
 fi
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_PLUGINS/zsh-syntax-highlighting/
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-autosuggestions
+# Install Zsh plugins
+mkdir -p "$ZSH_PLUGINS"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS/zsh-syntax-highlighting/"
+git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_PLUGINS/zsh-autosuggestions"
 
-# vim plugin manager
+# Vim plugin manager
+mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
 mkdir -p ~/.vim/backups
 mkdir -p ~/.vim/undodir
 
-# tmux plugin manager
+# Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
-# softlinks
-
+# Create symlinks for dotfiles
 ln -sf $DOT/.zshrc ~/.zshrc
 ln -sf $DOT/.gitconfig ~/.gitconfig
 ln -sf $DOT/.vimrc ~/.vimrc
@@ -45,9 +49,8 @@ ln -sf $DOT/.config/lsd/colors.yaml ~/.config/lsd/colors.yaml
 ln -sf $DOT/.tmux.conf ~/.tmux.conf
 tmux source ~/.tmux.conf
 
-rm -rf $TMP
-
-#zsh 2>/dev/null
+# Clean up
+rm -rf "$TMP"
 
 # Pacman configuration optimization if running on Arch Linux
 if command -v pacman > /dev/null; then
