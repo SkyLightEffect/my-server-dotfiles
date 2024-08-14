@@ -20,19 +20,9 @@ set tabstop=2               " Number of spaces per tab
 set shiftwidth=2            " Number of spaces for autoindent
 set expandtab               " Use spaces instead of tabs
 
-" Colors
-syntax on
-colorscheme onedark
-
 " Visual Enhancements
 set number                  " Show line numbers
 set cursorline              " Highlight the line with the cursor
-
-" Airline & Lightline
-let g:airline_theme = 'onedark'
-let g:lightline = {
-    \ 'colorscheme': 'onedark',
-    \ }
 
 " Plugin Management
 call plug#begin('~/.vim/plugged')
@@ -58,6 +48,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
   Plug 'prabirshrestha/asyncomplete-tags.vim'
 call plug#end()
+
+" Set colorscheme after plugins are loaded
+colorscheme onedark
+
+" Airline & Lightline
+let g:airline_theme = 'onedark'
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ }
 
 " Tab Completion with Autocomplete
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
