@@ -4,6 +4,11 @@ SAVEHIST=1000
 setopt COMPLETE_ALIASES
 unsetopt beep
 
+setopt auto_cd # cd into dirs with typing in dir name
+setopt auto_pushd # keep directory history
+setopt pushd_ignore_dups # ignore directory duplicatiore for dir history
+setopt extended_glob # enables globbing patterns
+
 # vi mode
 bindkey -v
 #export KEYTIMEOUT=1
