@@ -66,6 +66,10 @@ source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 
 # aliases
+
+alias grep='grep --color=auto' # colorize key words
+alias df='df -h'
+
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
 
@@ -84,6 +88,8 @@ alias dots-update="rm -rf ~/.dotfiles && git clone https://github.com/SkyLightEf
 if command -v gping &> /dev/null; then
   alias ping="gping"
 fi
+
+alias
 
 # automatically start tmux session on shell startup
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
