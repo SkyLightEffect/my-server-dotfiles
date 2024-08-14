@@ -28,6 +28,10 @@ set wrap                    " Enable line wrapping
 set list                    " Show hidden characters like tabs and trailing spaces
 set listchars=tab:>-,trail:- " Customize list characters
 
+" Code Folding
+set foldmethod=syntax        " Use syntax-based folding
+set foldlevelstart=1         " Start with folds open by default
+
 " Plugin Management
 call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
