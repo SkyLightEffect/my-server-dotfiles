@@ -84,7 +84,7 @@ alias dots-update="rm -rf ~/.dotfiles && git clone https://github.com/SkyLightEf
 
 gping --version 2>/dev/null 1>/dev/null && alias ping="gping"
 
-# tmux
+# automatically start tmux session on shell startup
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
   tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux 2> /dev/null
 fi
