@@ -66,6 +66,7 @@ source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 
 # aliases
+alias grep="grep --color=auto"
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
 
