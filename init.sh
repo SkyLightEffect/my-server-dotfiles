@@ -48,3 +48,26 @@ tmux source ~/.tmux.conf
 rm -rf $TMP
 
 #zsh 2>/dev/null
+
+# Pacman configuration optimization if running on Arch Linux
+if command -v pacman > /dev/null; then
+  echo "Optimizing pacman configuration..."
+
+  # Backup original pacman.conf
+  cp /etc/pacman.conf /etc/pacman.conf.bak
+
+  # Add/modify settings in pacman.conf
+  sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
+  sed -i 's/#Color/Color/' /etc/pacman.conf
+  sed -i 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
+  sed -i 's/# TotalDownload = 0/TotalDownload = 1/' /etc/pacman.conf
+  
+  # Ensure ILoveCandy is present
+  if grep -q '^ILoveCandy' /etc/pacman.conf; then
+    sed -i 's/^#\?ILoveCandy/ILoveCandy/' /etc/pacman.conf
+  else
+    echo "ILoveCandy" >> /etc/pacman.conf
+  fi
+
+  echo "Pacman configuration optimized with ILoveCandy."
+fi
