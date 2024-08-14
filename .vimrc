@@ -32,6 +32,14 @@ set listchars=tab:>-,trail:- " Customize list characters
 set foldmethod=syntax        " Use syntax-based folding
 set foldlevelstart=1         " Start with folds open by default
 
+" Backup and Auto-save
+set backup                 " Enable backups
+set backupdir=~/.vim/backups " Set backup directory
+set undodir=~/.vim/undodir " Set undo directory
+set undofile                " Enable persistent undo
+set writebackup             " Make a backup before overwriting a file
+
+
 " Plugin Management
 call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
