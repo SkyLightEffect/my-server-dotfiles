@@ -81,7 +81,9 @@ fi
 
 alias dots-update="rm -rf ~/.dotfiles && git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sh ~/.dotfiles/init.sh && rm -rf ~/.dotfiles && sudo git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sudo ~/.dotfiles/init.sh"
 
-gping --version 2>/dev/null 1>/dev/null && alias ping="gping"
+if command -v gping &> /dev/null; then
+  alias ping="gping"
+fi
 
 # automatically start tmux session on shell startup
 if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
