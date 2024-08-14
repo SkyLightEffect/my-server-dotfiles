@@ -1,41 +1,40 @@
-" basics
-set nocompatible      " Disable compatibility with vi which can cause unexpected issues.
-filetype on           " Enable type file detection. Vim will be able to try to detect the type of file in use.
-filetype plugin on    " Enable plugins and load plugin for the detected file type.
-filetype indent on    " Load an indent file for the detected file type.
+" Basics
+set nocompatible            " Disable compatibility with vi
+filetype plugin indent on   " Enable filetype detection, plugins, and indentation
 
-" navigation and control
-set ttymouse=xterm2 " tmux mouse compatibility
-set mouse=r         " mouse right click
-set scrolloff=10    " Do not let cursor scroll below or above N number of lines when scrolling.
-set pastetoggle=<F2>
+" Navigation and Control
+set ttymouse=xterm2         " tmux mouse compatibility
+set mouse=a                 " Enable mouse in all modes
+set scrolloff=10            " Keep cursor 10 lines away from edge
+set pastetoggle=<F2>        " Toggle paste mode with F2
 
-" search
-set ignorecase    " Ignore capital letters during search.
-set smartcase     " Override the ignorecase option if searching for capital letters.
-set hlsearch      " Use highlighting when doing a search. 
-set incsearch     " Start highlighting as soon as you start typing for search
+" Search
+set ignorecase              " Ignore case when searching
+set smartcase               " Override ignorecase if search contains uppercase
+set hlsearch                " Highlight search results
+set incsearch               " Incremental search
 
-" tab spacing
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
+" Tab and Indentation
+set smartindent             " Smart indentation
+set tabstop=2               " Number of spaces per tab
+set shiftwidth=2            " Number of spaces for autoindent
+set expandtab               " Use spaces instead of tabs
 
-" colors
+" Colors
 syntax on
+colorscheme onedark
 
-" optics
-set number
-set cursorline
+" Visual Enhancements
+set number                  " Show line numbers
+set cursorline              " Highlight the line with the cursor
 
-let g:airline_theme='onedark'
+" Airline & Lightline
+let g:airline_theme = 'onedark'
 let g:lightline = {
-          \ 'colorscheme': 'onedark',
-      \ }
+    \ 'colorscheme': 'onedark',
+    \ }
 
-" PLUGINS ---------------------------------------------------------------- {{{
-
+" Plugin Management
 call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
   Plug 'preservim/nerdtree'
@@ -43,82 +42,57 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'joshdick/onedark.vim'
   Plug 'tpope/vim-commentary'
-  " optics
   Plug 'ap/vim-css-color'
-  " modern PHP syntax highlighting
   Plug 'StanAngeloff/php.vim'
-  " Syntax highlighting for postgres
   Plug 'lifepillar/pgsql.vim'
-
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'alvan/vim-closetag'
   Plug 'jiangmiao/auto-pairs'
-
-  " Add info to sidebar about git
   Plug 'airblade/vim-gitgutter'
-
-	" sync-vim is only here because it is required by vim-lsp
-	Plug 'prabirshrestha/async.vim'
-	" Languages server protocol connection
-	Plug 'prabirshrestha/vim-lsp'
-
-  " Autocomplete functionality
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/asyncomplete.vim'
-  " Autocomplete source - the buffer
   Plug 'prabirshrestha/asyncomplete-buffer.vim'
-  " Autocomplete source - files
   Plug 'prabirshrestha/asyncomplete-file.vim'
-  " Autocomplete source - language server protocol
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  " Autocomplete source - Ultisnips
   Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-  " Autocomplete source - ctags
-  Plug 'prabirshrestha/asyncomplete-tags.vim'"
+  Plug 'prabirshrestha/asyncomplete-tags.vim'
+call plug#end()
 
-  call plug#end()
-
-colorscheme onedark 
-
-" Tab completion with autocomplete
+" Tab Completion with Autocomplete
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-imap <c-space> <Plug>(asyncomplete_force_refresh)
+inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>"
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
 
-" set up lsp
-
+" LSP Configuration
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+    nnoremap <buffer> gd <Plug>(lsp-definition)
+    nnoremap <buffer> gs <Plug>(lsp-document-symbol-search)
+    nnoremap <buffer> gS <Plug>(lsp-workspace-symbol-search)
+    nnoremap <buffer> gr <Plug>(lsp-references)
+    nnoremap <buffer> gi <Plug>(lsp-implementation)
+    nnoremap <buffer> gt <Plug>(lsp-type-definition)
+    nnoremap <buffer> <leader>rn <Plug>(lsp-rename)
+    nnoremap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nnoremap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nnoremap <buffer> K <Plug>(lsp-hover)
+    nnoremap <buffer> <C-f> <Plug>(lsp-scroll-up)
+    nnoremap <buffer> <C-d> <Plug>(lsp-scroll-down)
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
-    " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
     au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-
-
-" Using asyncomplete-buffer.vim
+" Autocomplete Sources Configuration
 call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
     \ 'name': 'buffer',
     \ 'whitelist': ['*'],
@@ -128,24 +102,20 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \  },
     \ }))
 
-" Using asyncomplete-file.
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
     \ 'name': 'file',
     \ 'whitelist': ['*'],
     \ 'priority': 10,
     \ 'completor': function('asyncomplete#sources#file#completor')
     \ }))
 
-
-" Using Ultisnips
 call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-      \ 'name': 'ultisnips',
-      \ 'whitelist': ['*'],
-      \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-      \ }))
+    \ 'name': 'ultisnips',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    \ }))
 
-" Using Ctags
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'name': 'tags',
     \ 'whitelist': ['c', 'ruby'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
