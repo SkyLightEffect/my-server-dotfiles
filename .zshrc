@@ -69,15 +69,14 @@ source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
 alias tmux="tmux -2"
 alias tmrl="rm -rf ~/.tmux/ && tmux source ~/.tmux.conf"
 
-lsd --version 2>/dev/null 1>/dev/null
-if [ $? -eq 0 ]; then
+if command -v lsd &> /dev/null; then
   alias ls="lsd"
   alias l='ls -l'
   alias ll='ls -la'
   alias la='ls -a'
   alias lla='ls -la'
   alias lt='ls --tree'
-  alias clear='clear && neofetch 2> /dev/null || pfetch 2> /dev/null'
+  alias clear='clear && (neofetch || pfetch)'
 fi
 
 alias dots-update="rm -rf ~/.dotfiles && git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sh ~/.dotfiles/init.sh && rm -rf ~/.dotfiles && sudo git clone https://github.com/SkyLightEffect/my-server-dotfiles.git ~/.dotfiles && sudo ~/.dotfiles/init.sh"
