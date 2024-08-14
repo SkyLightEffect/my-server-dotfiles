@@ -23,6 +23,10 @@ set expandtab               " Use spaces instead of tabs
 " Visual Enhancements
 set number                  " Show line numbers
 set cursorline              " Highlight the line with the cursor
+set relativenumber          " Show relative line numbers
+set wrap                    " Enable line wrapping
+set list                    " Show hidden characters like tabs and trailing spaces
+set listchars=tab:>-,trail:- " Customize list characters
 
 " Plugin Management
 call plug#begin('~/.vim/plugged')
@@ -97,7 +101,7 @@ call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options
     \ 'whitelist': ['*'],
     \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ 'config': {
-    \    'max_buffer_size': 5000000,
+    \    'max_buffer_size': 10000000,
     \  },
     \ }))
 
@@ -119,6 +123,6 @@ call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
     \ 'whitelist': ['c', 'ruby'],
     \ 'completor': function('asyncomplete#sources#tags#completor'),
     \ 'config': {
-    \    'max_file_size': 50000000,
+    \    'max_file_size': 10000000,
     \  },
     \ }))
