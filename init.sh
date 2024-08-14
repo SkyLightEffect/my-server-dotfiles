@@ -21,6 +21,8 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_PLUGINS/zsh-
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -es -u $DOT/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
+mkdir ~/.vim/backups
+
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
