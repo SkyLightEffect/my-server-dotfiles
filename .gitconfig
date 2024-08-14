@@ -3,3 +3,5 @@
 	email = 71511518+SkyLightEffect@users.noreply.github.com
 [credential]
 	helper = cache
+[url "git@github.com:"]
+	insteadOf = https://github.com/
