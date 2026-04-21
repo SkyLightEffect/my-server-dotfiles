@@ -1,34 +1,49 @@
 #!/bin/bash
 set -e
 
-DOT=~/.dotfiles
-SCRIPTS=$DOT/scripts
-TMP=$(mktemp -d)
+# Define common server packages (Removed 'lsd' to avoid Nerd-Font rendering issues over SSH)
+PACKAGES="sudo zsh vim make curl tmux progress fd wget"
 
-# Check for root
+echo "Checking system requirements and permissions..."
+
+# Check if script is run as root (It should be, as init.sh calls it via sudo)
 if [ "$(id -u)" -ne 0 ]; then
-  echo "Skipping package installation due to lack of permissions."
+  echo "Error: This script must be run as root (or via sudo)."
   exit 1
 fi
 
-# Check for package manager
+# Detect package manager and install packages
 if command -v pacman > /dev/null; then
-  echo "Install arch packages via pacman..."
-  chmod u+x "$DOT/.pacman.sh" && "$DOT/.pacman.sh"
-elif command -v apt > /dev/null; then
-  echo "Install apt packages..."
-  chmod u+x "$DOT/.apt.sh" && "$DOT/.apt.sh"
+  echo "Detected Arch Linux. Installing packages via pacman..."
   
-  # install lsd
-  curl -fLo "$TMP/lsd.deb" --create-dirs "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_amd64.deb"
-  dpkg -i "$TMP/lsd.deb"
-  rm "$TMP/lsd.deb"
+  # Update databases first to prevent 404 errors on fresh containers
+  pacman -Sy --noconfirm
+  
+  # Install common packages + Arch specific ones (like gping, fd)
+  pacman -S --noconfirm $PACKAGES gping fd
+
+elif command -v apt > /dev/null; then
+  echo "Detected Debian/Ubuntu. Installing packages via apt..."
+  
+  # Update lists
+  apt-get update -y
+  
+  # Install common packages + Debian specific naming (fd-find)
+  apt-get install -y $PACKAGES gping fd-find
+  
+  # Ensure fd is available as 'fd' on Debian
+  if [ ! -L /usr/local/bin/fd ] && [ -f /usr/lib/cargo/bin/fd ]; then
+    ln -s /usr/lib/cargo/bin/fd /usr/local/bin/fd || true
+  fi
+
 else
-  echo "No supported package manager found. Exiting..."
+  echo "No supported package manager (pacman/apt) found. Exiting..."
   exit 1
 fi
 
-# install pfetch
-chmod u+x "$DOT/.pfetch.sh" && "$DOT/.pfetch.sh" "$TMP"
+echo "Installing pfetch directly..."
+# pfetch is just a simple bash script. No need to clone the whole repo and run make.
+curl -sL "https://raw.githubusercontent.com/dylanaraps/pfetch/master/pfetch" -o /usr/local/bin/pfetch
+chmod +x /usr/local/bin/pfetch
 
-rm -rf "$TMP"
+echo "Package installation complete!"
