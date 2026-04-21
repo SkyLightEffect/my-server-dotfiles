@@ -62,8 +62,24 @@ PROMPT="%F{green}%n%f%F{green}@%f%F{green}%m%f: %F{cyan}%~%f%F{white} $ %f"
 PLUGINS=~/.zsh/plugins/
 
 #syntax-highlighting; should be last.
-source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
+# source $PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+# source $PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh 2> /dev/null
+
+### ZINIT ASYNC LOADER ###
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Intall Zinit if not already installed
+if [ ! -d "$ZINIT_HOME" ]; then
+    print -P "%F{33} ▓▒░ Zinit wird installiert...%f"
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Turbo-Mode (lucid = no loading texts, wait = background loading)
+zinit wait lucid for \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-syntax-highlighting
 
 # aliases
 alias grep="grep --color=auto"

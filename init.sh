@@ -37,15 +37,6 @@ if [[ "$SHELL" != */zsh ]]; then
   sudo chsh -s "$(command -v zsh)" "$(whoami)"
 fi
 
-# Clone Zsh plugins
-mkdir -p "$ZSH_PLUGINS"
-if [ ! -d "$ZSH_PLUGINS/zsh-syntax-highlighting" ]; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS/zsh-syntax-highlighting"
-fi
-if [ ! -d "$ZSH_PLUGINS/zsh-autosuggestions" ]; then
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_PLUGINS/zsh-autosuggestions"
-fi
-
 # Setup Vim Plugin Manager (vim-plug)
 mkdir -p ~/.vim/autoload ~/.vim/backups ~/.vim/undodir
 if [ ! -f ~/.vim/autoload/plug.vim ]; then
