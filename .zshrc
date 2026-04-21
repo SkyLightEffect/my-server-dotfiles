@@ -1,11 +1,12 @@
-# --- TERMINAL FIXES ---
+# --- TERMINAL & LOCALE ---
+export LANG=en_US.UTF-8
+export TERM=xterm-256color
+
+# --- PFETCH CONFIG (No-Query Mode) ---
 export PF_INFO="ascii os host kernel uptime pkgs memory"
 export PF_COL1=4
 export PF_COL2=7
 export PF_COL3=1
-export TERM=xterm-256color
-
-# Start pfetch
 pfetch
 
 # --- ZINIT PLUGIN MANAGER ---
@@ -17,7 +18,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Load plugins with a stable configuration
+# Stable Plugin Loading
 zinit wait lucid for \
     atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
@@ -26,6 +27,7 @@ zinit wait lucid for \
         zsh-users/zsh-completions
 
 # --- SHELL OPTIONS ---
+setopt prompt_subst          # CRITICAL: This fixes the ${vcs_info_msg_0_} error
 setopt autocd
 setopt interactive_comments
 setopt magicequalsubst
@@ -45,11 +47,12 @@ bindkey -e
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
-# --- PROMPT ---
+# --- PROMPT SETUP ---
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f '
-PROMPT='%F{green}%n@%m%f:%F{blue}%~%f %F{cyan}${vcs_info_msg_0_}%f$ '
+zstyle ':vcs_info:git:*' formats '%F{242}(%b)%f '
+# Clean prompt: User@Host:Path [GitBranch] $
+PROMPT='%F{042}%n@%m%f:%F{033}%~%f %F{242}${vcs_info_msg_0_}%f$ '
 
 # --- ALIASES ---
 alias ls='lsd'
