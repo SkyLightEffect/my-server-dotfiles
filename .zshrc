@@ -1,12 +1,11 @@
 # --- TERMINAL FIXES ---
-# Prevent artifacts on Windows SSH
 export PF_INFO="ascii os host kernel uptime pkgs memory"
 export PF_COL1=4
 export PF_COL2=7
 export PF_COL3=1
 export TERM=xterm-256color
 
-# Run pfetch for that sweet startup look
+# Start pfetch
 pfetch
 
 # --- ZINIT PLUGIN MANAGER ---
@@ -18,38 +17,35 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Load plugins asynchronously
+# Load plugins with a stable configuration
 zinit wait lucid for \
     atinit"zicompinit; zicdreplay" \
         zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggestions_start" \
-        zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-autosuggestions \
     blockf \
         zsh-users/zsh-completions
 
 # --- SHELL OPTIONS ---
-setopt autocd              # Change directory by just typing its name
-setopt interactive_comments # Allow comments in interactive shell
-setopt magicequalsubst     # Parameter expansion for arguments like --prefix=$HOME
-setopt notify              # Report status of background jobs immediately
+setopt autocd
+setopt interactive_comments
+setopt magicequalsubst
+setopt notify
 
-# --- HISTORY SETTINGS ---
+# --- HISTORY ---
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory       # Append to history file instead of overwriting
-setopt sharehistory        # Share history between different sessions
-setopt hist_ignore_dups    # Ignore immediate duplicates
-setopt hist_ignore_space   # Ignore commands starting with a space
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_dups
+setopt hist_ignore_space
 
 # --- KEYBINDINGS ---
-bindkey -e                 # Use emacs mode (default)
-# Better history search with Up/Down arrows
+bindkey -e
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 # --- PROMPT ---
-# Minimalist prompt with Git info
 autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f '
@@ -66,5 +62,4 @@ alias ta='tmux attach -t'
 alias dot='cd ~/dotfiles-dev'
 
 # --- LOAD COLORS ---
-# Correctly source LS_COLORS (Fixed for Zsh)
 [ -f ~/.dotfiles/.LS_COLORS ] && source ~/.dotfiles/.LS_COLORS
