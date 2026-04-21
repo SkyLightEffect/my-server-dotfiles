@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Define common server packages
-PACKAGES="sudo zsh vim make curl tmux progress fd wget"
+# lsd ist wieder drin!
+PACKAGES="sudo zsh vim make curl tmux progress fd wget lsd"
 
 echo "Checking system requirements and permissions..."
 

@@ -105,4 +105,4 @@ cd
 
 #export LS_COLORS="$(vivid generate nord)"
 
-# export LS_COLORS=$(cat ~/.dotfiles/.LS_COLORS)
+export LS_COLORS=$(cat ~/.dotfiles/.LS_COLORS)
