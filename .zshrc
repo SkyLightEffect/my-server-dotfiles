@@ -26,6 +26,8 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+alias t='tmux'
+alias ta='tmux attach -t'
 
 # Load LS_COLORS if file exists
 [ -f ~/.dotfiles/.LS_COLORS ] && source ~/.dotfiles/.LS_COLORS
