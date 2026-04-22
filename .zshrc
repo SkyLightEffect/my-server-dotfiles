@@ -70,6 +70,14 @@ if command -v lsd &> /dev/null; then
   alias clear='clear && echo "" && pfetch 2> /dev/null'
 fi
 
+cd ~/dotfiles-dev
+
+# --- TMUX AUTOSTART ---
+# Start tmux automatically if we are logged in via SSH and not already in a tmux session
+if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+    exec tmux new-session -A -s base
+fi
+
 # --- STARTUP ---
 echo ""
 pfetch 2> /dev/null
