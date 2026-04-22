@@ -23,18 +23,22 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
-# --- ZINIT (Plugin Loader) ---
+# --- ZINIT SETUP (Force HTTPS for new containers) ---
 ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
 if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
+    # This ensures Zinit uses HTTPS even if Git defaults are different
+    zstyle ':zinit:*' git-clone-command "git clone --depth 1"
+    
     source "${ZINIT_HOME}/zinit.zsh"
+    
+    # Load plugins via HTTPS
     zinit light zdharma-continuum/fast-syntax-highlighting
     zinit light zsh-users/zsh-autosuggestions
 fi
 
-# --- COMPLETION (Optimized!) ---
+# --- COMPLETION ---
 autoload -Uz compinit
-# Check if the cache is older than 24h to save time
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+if [[ -n ${ZDOTDIR:-$HOME}/.compdump(#qN.m-1) ]]; then
     compinit -C
 else
     compinit
@@ -42,7 +46,7 @@ fi
 zstyle ':completion:*' menu select
 _comp_options+=(globdots)
 
-# --- DYNAMIC PROMPT (Oliver-Style with Root-Check) ---
+# --- PROMPT & ALIASES ---
 autoload -Uz colors && colors
 if [[ $EUID -eq 0 ]]; then
   U_COL="red"; S_SYM="#"
@@ -51,10 +55,10 @@ else
 fi
 PROMPT="%F{$U_COL}%n%f%F{$U_COL}@%f%F{$U_COL}%m%f: %F{cyan}%~%f%F{white} $S_SYM %f"
 
-# --- ALIASES ---
 alias grep="grep --color=auto"
 alias tmux="tmux -2"
-alias dots-update="cd ~/dotfiles-dev && git pull && bash init.sh"
+alias t="tmux attach-session -t base || tmux new-session -s base"
+alias dots-update="cd ~/.dotfiles && git pull && bash init.sh"
 
 if command -v lsd &> /dev/null; then
   alias ls="lsd"
@@ -66,16 +70,7 @@ if command -v lsd &> /dev/null; then
   alias clear='clear && echo "" && pfetch 2> /dev/null'
 fi
 
-# --- TMUX AUTO-START ---
-if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
-  tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux 2> /dev/null
-fi
-
 # --- STARTUP ---
 echo ""
 pfetch 2> /dev/null
 cd
-
-# --- COLORS LOAD ---
-[ -f ~/.dotfiles/.LS_COLORS ] && export LS_COLORS=$(cat ~/.dotfiles/.LS_COLORS)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
