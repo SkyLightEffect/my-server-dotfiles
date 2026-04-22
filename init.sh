@@ -58,6 +58,9 @@ sudo chsh -s "$(command -v zsh)" root
 sudo cp "$DOT/.zshrc" /root/.zshrc
 sudo cp "$DOT/.tmux.conf" /root/.tmux.conf
 
+# Auto-install Tmux plugins in the background
+~/.tmux/plugins/tpm/bin/install_plugins
+
 # Fix permissions for root just to be safe
 sudo chown root:root /root/.zshrc /root/.tmux.conf
 
