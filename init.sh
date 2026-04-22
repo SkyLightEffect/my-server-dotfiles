@@ -17,7 +17,12 @@ if command -v pacman > /dev/null; then
   grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
 fi
 
-echo "=== 2. User Setup & Zinit ==="
+echo "=== 2. Git Trust & Zinit ==="
+# Trust GitHub automatically to prevent SSH clone errors for plugins on fresh systems
+mkdir -p ~/.ssh
+ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+# Zinit Plugin Manager
 ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
     echo "Installing Zinit..."
@@ -38,6 +43,7 @@ echo "=== 3. Symlinks & Root Setup ==="
 ln -sf "$DOT/.zshrc" ~/.zshrc
 ln -sf "$DOT/.tmux.conf" ~/.tmux.conf
 ln -sf "$DOT/.vimrc" ~/.vimrc
+ln -sf "$DOT/.gitconfig" ~/.gitconfig
 
 # Switch root to ZSH and link config (for the red prompt)
 sudo chsh -s "$(command -v zsh)" root
