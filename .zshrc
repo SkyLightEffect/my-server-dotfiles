@@ -8,7 +8,7 @@ export EDITOR="vim"
 HISTFILE=~/.histfile
 HISTSIZE=50000
 SAVEHIST=50000
-# Best Practice: Schreibe Befehle sofort in die History und teile sie über alle Tmux-Panes
+# Best Practice: Write commands immediately to history and share across all Tmux panes
 setopt INC_APPEND_HISTORY SHARE_HISTORY EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE
 setopt COMPLETE_ALIASES auto_cd auto_pushd pushd_ignore_dups extended_glob
@@ -27,23 +27,10 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
-# --- ZINIT SETUP ---
-ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
-if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
-    zstyle ':zinit:*' git-clone-command "git clone --depth 1"
-    source "${ZINIT_HOME}/zinit.zsh"
-    
-    # Plugins (Reihenfolge ist wichtig für Performance!)
-    zinit light zsh-users/zsh-completions
-    zinit light zdharma-continuum/fast-syntax-highlighting
-    zinit light zsh-users/zsh-autosuggestions
-    zinit light Aloxaf/fzf-tab # Interaktives TAB-Menü mit FZF
-fi
-
 # --- FZF INTEGRATION ---
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# --- COMPLETION ---
+# --- COMPLETION (Must be loaded BEFORE fzf-tab) ---
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-$HOME}/.compdump(#qN.m-1) ]]; then
     compinit -C
@@ -51,10 +38,27 @@ else
     compinit
 fi
 zstyle ':completion:*' menu select
-# Farben für fzf-tab aktivieren
+# Enable colors for fzf-tab descriptions
 zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup # Öffnet fzf-tab als schickes Tmux-Popup (optional)
 _comp_options+=(globdots)
+
+# --- ZINIT SETUP ---
+ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
+if [ -f "${ZINIT_HOME}/zinit.zsh" ]; then
+    # This ensures Zinit uses HTTPS even if Git defaults are different
+    zstyle ':zinit:*' git-clone-command "git clone --depth 1"
+    source "${ZINIT_HOME}/zinit.zsh"
+    
+    # Load plugins via HTTPS
+    zinit light zsh-users/zsh-completions
+    zinit light zdharma-continuum/fast-syntax-highlighting
+    zinit light zsh-users/zsh-autosuggestions
+    
+    # Interactive TAB menu with FZF (Requires compinit to be loaded first)
+    zinit light Aloxaf/fzf-tab
+    # Opens fzf-tab as a neat Tmux popup (optional)
+    zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+fi
 
 # --- PROMPT & ALIASES ---
 autoload -Uz colors && colors
@@ -81,13 +85,13 @@ if command -v lsd &> /dev/null; then
 fi
 
 # --- STARTUP ---
-# 1. Erst visuelles Feedback (nur bei Login-Shells)
+# 1. Initial visual feedback (only for login shells)
 if [[ -o login ]]; then
     echo ""
     pfetch 2> /dev/null
 fi
 
-# 2. Tmux Autostart (MUSS ganz am Ende stehen wegen 'exec')
+# 2. Tmux Autostart (MUST be at the very end because of 'exec')
 if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then
     exec tmux new-session -A -s base
 fi
